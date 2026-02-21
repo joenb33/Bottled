@@ -278,6 +278,18 @@ All fonts are free via Google Fonts.
 
 ---
 
+## 🧪 Testing
+
+API handlers are covered by request-level tests (mocked Supabase and external services). Run the suite locally or in CI:
+
+```bash
+npm test
+```
+
+Tests run automatically on every push and pull request to `main` via [GitHub Actions](.github/workflows/test.yml).
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you have an idea, found a bug, or want to improve something:
