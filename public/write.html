@@ -18,6 +18,7 @@
       <a href="/write.html">Throw a bottle</a>
       <a href="/read.html">Find a bottle</a>
       <a href="/about.html">About</a>
+      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
       <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
     </nav>
   </header>
@@ -27,12 +28,22 @@
     <form id="write-form">
       <textarea id="message" rows="6" maxlength="1000" placeholder="Your message to the world…"></textarea>
       <p><span id="char-count">0</span> / 1000</p>
+      <fieldset class="bottle-options">
+        <legend>Wax seal (mood)</legend>
+        <div class="mood-chips" id="mood-chips" role="group" aria-label="Choose a mood for your bottle"></div>
+      </fieldset>
+      <fieldset class="bottle-options">
+        <legend>Options</legend>
+        <label class="option-row"><input type="checkbox" id="seal-days-check" /> Seal for <input type="number" id="seal-days" min="1" max="365" value="30" disabled /> days (time capsule)</label>
+        <label class="option-row"><input type="checkbox" id="one-time" /> Rare bottle — only one person can ever find it</label>
+      </fieldset>
       <button type="submit" class="btn btn-primary" id="submit-btn">Send the bottle</button>
     </form>
     <p id="form-feedback" class="error-message" aria-live="polite" hidden></p>
     <div id="success-box" hidden>
       <p class="success-message">Your bottle is in the sea.</p>
       <p class="success-meta">You won't know if someone finds it—that's the sea.</p>
+      <p class="success-quote" id="success-quote"></p>
       <p><a href="/write.html" class="btn btn-secondary">Throw another</a> <a href="/" class="btn btn-secondary">Back home</a></p>
     </div>
   </main>
@@ -40,6 +51,9 @@
   <script src="/js/api.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/theme.js"></script>
+  <script src="/js/quotes.js"></script>
+  <script src="/js/sound.js"></script>
   <script src="/js/write.js"></script>
+  <script>(function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){b.textContent=window.BottledSound.isEnabled()?'🔇':'🔊';b.onclick=function(){var on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'🔇':'🔊';};}})();</script>
 </body>
 </html>

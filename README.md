@@ -98,7 +98,7 @@ npm install
 ### 3. Set up Supabase
 
 1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to the SQL editor and run the full schema from **[supabase/schema.sql](supabase/schema.sql)** (messages table, RLS, `get_random_message` RPC, rate-limiting table and `increment_send_count` RPC).
+2. Go to the SQL editor and run the full schema from **[supabase/schema.sql](supabase/schema.sql)** (messages table, RLS, `get_random_message` RPC, rate-limiting table and `increment_send_count` RPC). If you already had an older schema, run **[supabase/migrations/001_mood_sealed_rare.sql](supabase/migrations/001_mood_sealed_rare.sql)** to add mood, time capsule, and rare-bottle columns.
 3. Copy your **Project URL** and **service_role key** from Settings → API
 
 ### 4. Configure environment variables

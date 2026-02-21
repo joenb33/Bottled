@@ -4,13 +4,20 @@
   /**
    * Send a message. Returns { success, id } or { success: false, error }.
    * @param {string} text
+   * @param {{ mood?: string, seal_days?: number, one_time?: boolean }} opts
    * @returns {Promise<{ success: boolean, id?: string, error?: string }>}
    */
-  async function sendMessage(text) {
+  async function sendMessage(text, opts) {
+    opts = opts || {};
     const res = await fetch('/api/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text.trim() }),
+      body: JSON.stringify({
+        text: text.trim(),
+        mood: opts.mood || undefined,
+        seal_days: opts.seal_days || undefined,
+        one_time: opts.one_time || false,
+      }),
     });
     const data = await res.json().catch(function () {
       return { success: false, error: 'Network error' };

@@ -23,12 +23,14 @@
       <a href="/write.html">Throw a bottle</a>
       <a href="/read.html">Find a bottle</a>
       <a href="/about.html">About</a>
+      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
       <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
     </nav>
   </header>
   <main id="main" class="container">
     <h1>Bottled</h1>
     <p class="tagline"><em>Throw your words into the sea. Someone, somewhere, will find them.</em></p>
+    <p class="landing-quote" id="landing-quote" aria-live="polite"></p>
     <p id="live-count" class="live-count" aria-live="polite">… bottles drifting in the sea right now.</p>
     <p class="cta-buttons">
       <a href="/write.html" class="btn btn-primary">Throw a bottle into the sea</a>
@@ -38,9 +40,24 @@
   <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/theme.js"></script>
+  <script src="/js/quotes.js"></script>
+  <script src="/js/sound.js"></script>
   <script src="/js/count.js"></script>
   <script>
     if (window.BottledAnimations) window.BottledAnimations.initOcean();
+    var q = document.getElementById('landing-quote');
+    if (q && window.BottledQuotes) q.textContent = window.BottledQuotes.random();
+    (function () {
+      var btn = document.getElementById('sound-toggle');
+      if (!btn || !window.BottledSound) return;
+      btn.textContent = window.BottledSound.isEnabled() ? '🔇' : '🔊';
+      btn.addEventListener('click', function () {
+        var on = !window.BottledSound.isEnabled();
+        window.BottledSound.setEnabled(on);
+        btn.textContent = on ? '🔇' : '🔊';
+        btn.setAttribute('aria-label', on ? 'Turn off ocean sound' : 'Turn on ocean sound');
+      });
+    })();
   </script>
 </body>
 </html>

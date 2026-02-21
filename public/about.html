@@ -18,6 +18,7 @@
       <a href="/write.html">Throw a bottle</a>
       <a href="/read.html">Find a bottle</a>
       <a href="/about.html">About</a>
+      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
       <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
     </nav>
   </header>
@@ -36,8 +37,10 @@
   <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/theme.js"></script>
+  <script src="/js/sound.js"></script>
   <script>
     if (window.BottledAnimations) window.BottledAnimations.initOcean();
+    (function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){b.textContent=window.BottledSound.isEnabled()?'🔇':'🔊';b.onclick=function(){var on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'🔇':'🔊';};}})();
   </script>
 </body>
 </html>

@@ -6,7 +6,10 @@ CREATE TABLE messages (
   content TEXT NOT NULL CHECK (char_length(content) <= 1000),
   created_at TIMESTAMPTZ DEFAULT NOW(),
   received_count INTEGER DEFAULT 0,
-  is_flagged BOOLEAN DEFAULT FALSE
+  is_flagged BOOLEAN DEFAULT FALSE,
+  mood TEXT,
+  sealed_until TIMESTAMPTZ,
+  one_time_use BOOLEAN DEFAULT FALSE
 );
 
 -- Index for ordering / random selection
@@ -23,7 +26,7 @@ CREATE POLICY "Read approved messages" ON messages
 CREATE POLICY "Insert via service role only" ON messages
   FOR INSERT WITH CHECK (TRUE);
 
--- RPC for fetching one random non-flagged message (used by GET /api/receive)
+-- RPC: one random message, not flagged, and (if sealed) past seal date
 CREATE OR REPLACE FUNCTION get_random_message()
 RETURNS SETOF messages
 LANGUAGE sql
@@ -31,6 +34,7 @@ SECURITY DEFINER
 AS $$
   SELECT * FROM messages
   WHERE is_flagged = FALSE
+    AND (sealed_until IS NULL OR sealed_until <= NOW())
   ORDER BY random()
   LIMIT 1;
 $$;

@@ -127,8 +127,9 @@ nav a:last-child {
   margin-right: 0;
 }
 
-.btn-theme {
-  margin-left: auto;
+.btn-theme,
+.btn-icon {
+  margin-left: 0.25rem;
   background: none;
   border: 1px solid var(--color-ocean);
   color: var(--color-ocean);
@@ -136,11 +137,12 @@ nav a:last-child {
   height: 2.25rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1;
   padding: 0;
 }
-.btn-theme:hover {
+.btn-theme:hover,
+.btn-icon:hover {
   background: var(--color-ocean);
   color: var(--color-sand);
 }
@@ -148,6 +150,13 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+.landing-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-sm);
 }
 
 /* Message body text (Lora) */
@@ -229,6 +238,13 @@ textarea:focus-visible {
   font-size: 0.875rem;
   margin-top: var(--space-lg);
 }
+.message-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-top: var(--space-lg);
+}
 .message-actions {
   display: flex;
   flex-wrap: wrap;
@@ -257,6 +273,99 @@ textarea:focus-visible {
 .text-muted {
   color: var(--color-text-muted);
   font-size: 0.9375rem;
+}
+
+/* Write form: mood & options */
+.bottle-options {
+  border: none;
+  margin: var(--space-lg) 0;
+  padding: 0;
+}
+.bottle-options legend {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+.mood-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+.mood-chip {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-sand-dark);
+  border-radius: 999px;
+  background: var(--color-sand);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.mood-chip:hover {
+  border-color: var(--color-sea-glass);
+}
+.mood-chip.selected {
+  border-color: var(--color-ocean);
+  background: var(--color-ocean);
+  color: var(--color-white);
+}
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+.option-row input[type="number"] {
+  width: 3.5rem;
+  padding: var(--space-xs);
+  border: 1px solid var(--color-sand-dark);
+  border-radius: var(--radius-sm);
+}
+.success-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  margin: var(--space-lg) 0;
+}
+
+/* Wax seal colours (by mood) */
+.seal-hopeful { --seal: #e8b86d; }
+.seal-lonely { --seal: #6b7b8c; }
+.seal-grateful { --seal: #7eb89e; }
+.seal-curious { --seal: #9b8dc4; }
+.seal-peaceful { --seal: #87ceeb; }
+.seal-adventurous { --seal: #c45c5c; }
+.seal-quiet { --seal: #8fa3b5; }
+.seal-brave { --seal: #4a9ebf; }
+
+.wax-seal {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--seal, var(--color-sea-glass));
+  margin-right: var(--space-sm);
+  vertical-align: middle;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.15);
+}
+.message-seal-row {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+}
+.open-bottle-step {
+  text-align: center;
+  padding: var(--space-2xl);
+}
+.open-bottle-step p {
+  margin-bottom: var(--space-lg);
 }
 
 /* Textarea polish */

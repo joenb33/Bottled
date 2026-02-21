@@ -26,21 +26,26 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const { id, content, created_at, received_count } = row;
+    const { id, content, created_at, received_count, mood, one_time_use } = row;
 
+    const updates = { received_count: (received_count || 0) + 1 };
+    if (one_time_use) {
+      updates.is_flagged = true;
+    }
     const { error: updateError } = await supabase
       .from('messages')
-      .update({ received_count: (received_count || 0) + 1 })
+      .update(updates)
       .eq('id', id);
 
     if (updateError) {
-      console.error('Update received_count error:', updateError);
+      console.error('Update error:', updateError);
     }
 
     res.status(200).json({
       text: content,
       date: created_at,
       id,
+      mood: mood || null,
     });
   } catch (err) {
     console.error('Receive error:', err);
