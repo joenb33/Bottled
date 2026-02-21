@@ -275,6 +275,28 @@ textarea:focus-visible {
   font-size: 0.9375rem;
 }
 
+/* Admin */
+.admin-login .admin-key-input {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: var(--space-md) 0;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  border: 1px solid var(--color-sand-dark);
+  border-radius: var(--radius-sm);
+}
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+.admin-card {
+  margin: 0;
+}
+
 /* Write form: mood & options */
 .bottle-options {
   border: none;

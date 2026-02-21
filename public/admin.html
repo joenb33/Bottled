@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Bottled</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/css/typography.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header>
+    <nav class="container">
+      <a href="/">Bottled</a>
+      <a href="/admin.html">Admin</a>
+    </nav>
+  </header>
+  <main id="main" class="container">
+    <h1>Admin — Flagged messages</h1>
+    <div id="admin-login" class="admin-login">
+      <p class="text-muted">Enter the admin secret to view and manage reported messages.</p>
+      <input type="password" id="admin-key" class="admin-key-input" placeholder="Admin secret" autocomplete="off" />
+      <button type="button" class="btn btn-primary" id="admin-login-btn">Continue</button>
+      <p id="admin-login-error" class="error-message" hidden></p>
+    </div>
+    <div id="admin-panel" hidden>
+      <p><button type="button" class="btn btn-secondary" id="admin-logout-btn">Log out</button> <button type="button" class="btn btn-secondary" id="admin-refresh-btn">Refresh list</button></p>
+      <p id="admin-count" class="text-muted"></p>
+      <div id="admin-list" class="admin-list"></div>
+      <p id="admin-empty" class="text-muted" hidden>No flagged messages.</p>
+    </div>
+  </main>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
