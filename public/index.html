@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bottled — Message in a Bottle</title>
+  <link rel="stylesheet" href="/css/typography.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+  <div class="ocean-container" aria-hidden="true"></div>
+  <header>
+    <nav class="container">
+      <a href="/">Bottled</a>
+      <a href="/write.html">Throw a bottle</a>
+      <a href="/read.html">Find a bottle</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Bottled</h1>
+    <p><em>Throw your words into the sea. Someone, somewhere, will find them.</em></p>
+    <p>
+      <a href="/write.html" class="btn btn-primary">Throw a bottle into the sea</a>
+      <a href="/read.html" class="btn btn-secondary">Find a bottle on the shore</a>
+    </p>
+  </main>
+  <script src="/js/animations.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    if (window.BottledAnimations) window.BottledAnimations.initOcean();
+  </script>
+</body>
+</html>

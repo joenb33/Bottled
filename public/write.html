@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Throw a bottle — Bottled</title>
+  <link rel="stylesheet" href="/css/typography.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+  <div class="ocean-container" aria-hidden="true"></div>
+  <header>
+    <nav class="container">
+      <a href="/">Bottled</a>
+      <a href="/write.html">Throw a bottle</a>
+      <a href="/read.html">Find a bottle</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Throw a bottle into the sea</h1>
+    <p>Write your message (max 1000 characters). No account, no name — just words.</p>
+    <form id="write-form">
+      <textarea id="message" rows="6" maxlength="1000" placeholder="Your message to the world…"></textarea>
+      <p><span id="char-count">0</span> / 1000</p>
+      <button type="submit" class="btn btn-primary" id="submit-btn">Send the bottle</button>
+    </form>
+    <p id="form-feedback" class="error-message" aria-live="polite" hidden></p>
+    <div id="success-box" hidden>
+      <p class="success-message">Your bottle is in the sea.</p>
+      <p><a href="/status.html" id="status-link">Check if someone found it</a></p>
+      <p><a href="/write.html" class="btn btn-secondary">Throw another</a></p>
+    </div>
+  </main>
+  <script src="/js/animations.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/write.js"></script>
+</body>
+</html>

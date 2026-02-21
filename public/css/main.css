@@ -1,0 +1,147 @@
+/* Bottled — design tokens and global styles */
+:root {
+  /* Colors */
+  --color-ocean: #1A3A5C;
+  --color-sea-glass: #4A9EBF;
+  --color-sand: #F5EDD6;
+  --color-sand-dark: #E8DFC5;
+  --color-white: #FFFFFF;
+  --color-text: #1A3A5C;
+  --color-text-muted: #5a7a94;
+  --color-error: #c45c5c;
+  --color-success: #4a9e7a;
+
+  /* Typography (families loaded in typography.css) */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.15s var(--ease-out);
+  --transition-normal: 0.25s var(--ease-out);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background-color: var(--color-sand);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-sea-glass);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-ocean);
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: var(--space-md) var(--space-xl);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-ocean);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-sea-glass);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-ocean);
+  border: 2px solid var(--color-ocean);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-ocean);
+  color: var(--color-white);
+}
+
+/* Nav */
+nav {
+  padding: var(--space-lg) 0;
+  font-family: var(--font-ui);
+}
+
+nav a {
+  margin-right: var(--space-lg);
+  font-weight: 500;
+}
+
+nav a:last-child {
+  margin-right: 0;
+}
+
+/* Message body text (Lora) */
+.message-body {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: var(--space-sm);
+}
+
+.success-message {
+  color: var(--color-success);
+  font-size: 0.875rem;
+  margin-top: var(--space-sm);
+}

@@ -1,0 +1,59 @@
+/* Ocean and bottle animations — see animations.js for wave logic */
+
+.ocean-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.ocean-wave {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(26, 58, 92, 0.03) 30%,
+    rgba(74, 158, 191, 0.06) 60%,
+    rgba(26, 58, 92, 0.04) 100%
+  );
+  animation: wave 12s ease-in-out infinite;
+}
+
+.ocean-wave:nth-child(2) {
+  animation-delay: -4s;
+  opacity: 0.7;
+}
+
+.ocean-wave:nth-child(3) {
+  animation-delay: -8s;
+  opacity: 0.5;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-2%) scaleY(1.02); }
+}
+
+/* Bottle reveal */
+.bottle-reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.bottle-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocean-wave {
+    animation: none;
+  }
+  .bottle-reveal {
+    transition-duration: 0.2s;
+  }
+}

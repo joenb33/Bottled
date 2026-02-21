@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find a bottle — Bottled</title>
+  <link rel="stylesheet" href="/css/typography.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+  <div class="ocean-container" aria-hidden="true"></div>
+  <header>
+    <nav class="container">
+      <a href="/">Bottled</a>
+      <a href="/write.html">Throw a bottle</a>
+      <a href="/read.html">Find a bottle</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Find a bottle on the shore</h1>
+    <div id="before-find">
+      <p>One random message from somewhere in the world.</p>
+      <button type="button" class="btn btn-primary" id="find-btn">Find a bottle</button>
+    </div>
+    <div id="message-box" class="bottle-reveal" hidden>
+      <div class="message-body" id="message-text"></div>
+      <p id="message-date" class="message-meta"></p>
+      <p><a href="/read.html" class="btn btn-secondary">Find another</a></p>
+    </div>
+    <p id="no-messages" hidden>No bottles on the shore right now. Try again later.</p>
+  </main>
+  <script src="/js/animations.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/read.js"></script>
+</body>
+</html>

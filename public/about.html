@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Bottled</title>
+  <link rel="stylesheet" href="/css/typography.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+  <div class="ocean-container" aria-hidden="true"></div>
+  <header>
+    <nav class="container">
+      <a href="/">Bottled</a>
+      <a href="/write.html">Throw a bottle</a>
+      <a href="/read.html">Find a bottle</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>About Bottled</h1>
+    <p>Bottled is a free, anonymous place to throw a message into the digital sea — or find one. No account, no email, no name.</p>
+    <h2>How it works</h2>
+    <p>You write a message and send it. It joins thousands of others. When someone clicks “Find a bottle”, they get one random message. That’s it. No replies, no likes, no followers.</p>
+    <h2>Privacy</h2>
+    <p>We don’t store your IP address, email, username, or any identifying data. We only store the message text, anonymously. We use a short-lived anonymous cookie (24 hours) so you can optionally check whether your bottle was found; that cookie isn’t tied to your identity. We aim to operate with minimal data and no tracking.</p>
+    <h2>Moderation</h2>
+    <p>Messages are checked automatically. Content that violates our guidelines (e.g. hate speech, harassment, explicit content) is rejected and not stored. Sending is limited to 5 messages per hour per IP to reduce abuse.</p>
+    <p><a href="/" class="btn btn-primary">Back home</a></p>
+  </main>
+  <script src="/js/animations.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    if (window.BottledAnimations) window.BottledAnimations.initOcean();
+  </script>
+</body>
+</html>
