@@ -5,6 +5,7 @@
 
   function apply(isDark) {
     document.body.classList.toggle('theme-dark', !!isDark);
+    document.body.classList.toggle('scene-night', !!isDark);
     document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
     var btn = document.getElementById('theme-toggle');
     if (btn) {

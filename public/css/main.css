@@ -426,3 +426,90 @@ body.theme-dark .message-card {
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
+
+/* Light mode: index layout when scene is hidden */
+body:not(.scene-night) header.scene-nav {
+  position: relative;
+  padding: var(--space-lg) var(--space-lg) 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 640px;
+  margin: 0 auto;
+  background: transparent;
+}
+body:not(.scene-night) .scene-nav-brand {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-right: var(--space-lg);
+}
+body:not(.scene-night) .scene-nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body:not(.scene-night) .scene-nav-links a {
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--color-ocean);
+}
+body:not(.scene-night) .scene-nav-controls {
+  display: flex;
+  gap: 0.25rem;
+}
+body:not(.scene-night) .scene-nav-btn {
+  background: transparent;
+  border: 1px solid var(--color-ocean);
+  color: var(--color-ocean);
+}
+body:not(.scene-night) main.scene-content {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  display: block;
+  text-align: left;
+  pointer-events: auto;
+}
+body:not(.scene-night) .scene-logo {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+  text-shadow: none;
+  animation: none;
+}
+body:not(.scene-night) .scene-tagline,
+body:not(.scene-night) .landing-quote {
+  color: var(--color-text-muted);
+  animation: none;
+}
+body:not(.scene-night) .scene-counter {
+  color: var(--color-text-muted);
+  animation: none;
+}
+body:not(.scene-night) .scene-buttons {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  animation: none;
+}
+body:not(.scene-night) .scene-btn {
+  width: auto;
+  animation: none;
+}
+body:not(.scene-night) footer.scene-footer {
+  position: relative;
+  padding: var(--space-lg);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+@media (max-width: 520px) {
+  body:not(.scene-night) .scene-nav-links {
+    display: none;
+  }
+}

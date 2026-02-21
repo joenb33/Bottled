@@ -6,45 +6,145 @@
   <title>Bottled — Message in a Bottle</title>
   <meta name="description" content="Throw your words into the sea. Someone, somewhere, will find them. Anonymous messages in a bottle — no account, no name, just words." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Bottled — Message in a Bottle" />
   <meta property="og:description" content="Throw your words into the sea. Someone, somewhere, will find them. Anonymous messages — no account, no name." />
   <link rel="stylesheet" href="/css/typography.css" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/scene.css" />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
-  <div class="ocean-container" aria-hidden="true"></div>
-  <header>
-    <nav class="container">
-      <a href="/">Bottled</a>
-      <a href="/write.html">Throw a bottle</a>
-      <a href="/read.html">Find a bottle</a>
-      <a href="/about.html">About</a>
-      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
-      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
-    </nav>
+
+  <div class="scene-wrapper" aria-hidden="true">
+    <div class="scene-sky"></div>
+    <div class="scene-stars" id="scene-stars"></div>
+    <div class="scene-moon" id="scene-moon"></div>
+    <div class="scene-reflection"></div>
+    <div class="scene-ocean">
+      <div class="scene-wave scene-w1">
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,95 C180,148 370,42 550,95 C730,148 920,42 1100,95 C1160,115 1200,140 1200,190 L0,190 Z" fill="rgba(61,143,173,0.14)"/>
+        </svg>
+      </div>
+      <div class="scene-wave scene-w2">
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,62 C210,115 420,18 620,65 C820,112 1010,22 1200,65 L1200,190 L0,190 Z" fill="rgba(17,34,64,0.82)"/>
+        </svg>
+      </div>
+      <div class="scene-wave scene-w3">
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,105 C160,58 310,138 510,88 C710,38 920,125 1200,82 L1200,190 L0,190 Z" fill="rgba(10,20,40,0.5)"/>
+        </svg>
+      </div>
+      <div class="scene-wave scene-w4">
+        <svg viewBox="0 0 1200 190" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,52 C260,108 510,8 760,58 C1010,108 1110,28 1200,55 L1200,190 L0,190 Z" fill="rgba(8,15,30,0.97)"/>
+        </svg>
+      </div>
+      <div class="scene-ocean-body"></div>
+    </div>
+    <div class="scene-bottle" aria-hidden="true">
+      <div class="scene-bottle-inner">
+        <svg viewBox="0 0 100 210" width="115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="gGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1a4a6a" stop-opacity="0.88"/>
+              <stop offset="28%" stop-color="#3d8fad" stop-opacity="0.62"/>
+              <stop offset="52%" stop-color="#5ab8d4" stop-opacity="0.48"/>
+              <stop offset="76%" stop-color="#3d8fad" stop-opacity="0.58"/>
+              <stop offset="100%" stop-color="#1a3a55" stop-opacity="0.92"/>
+            </linearGradient>
+            <linearGradient id="gNeck" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1a4060" stop-opacity="0.92"/>
+              <stop offset="42%" stop-color="#3d8fad" stop-opacity="0.68"/>
+              <stop offset="100%" stop-color="#1a3a55" stop-opacity="0.92"/>
+            </linearGradient>
+            <linearGradient id="gCork" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#d8ae5e"/>
+              <stop offset="100%" stop-color="#9a6828"/>
+            </linearGradient>
+            <linearGradient id="gPaper" x1="0%" y1="0%" x2="4%" y2="100%">
+              <stop offset="0%" stop-color="#f9f1d8"/>
+              <stop offset="100%" stop-color="#e6d5a8"/>
+            </linearGradient>
+            <linearGradient id="gWater" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="rgba(61,143,173,0.48)"/>
+              <stop offset="100%" stop-color="rgba(8,18,40,0.72)"/>
+            </linearGradient>
+            <clipPath id="bodyClip">
+              <path d="M34,60 Q18,76 18,98 L18,158 Q18,184 50,184 Q82,184 82,158 L82,98 Q82,76 66,60 Z"/>
+            </clipPath>
+          </defs>
+          <rect x="34" y="10" width="32" height="20" rx="5" fill="url(#gCork)"/>
+          <line x1="40" y1="12" x2="40" y2="28" stroke="rgba(90,50,8,0.28)" stroke-width="1.2"/>
+          <line x1="50" y1="12" x2="50" y2="28" stroke="rgba(90,50,8,0.28)" stroke-width="1.2"/>
+          <line x1="60" y1="12" x2="60" y2="28" stroke="rgba(90,50,8,0.28)" stroke-width="1.2"/>
+          <rect x="34" y="10" width="32" height="5" rx="3" fill="rgba(255,210,110,0.3)"/>
+          <ellipse cx="50" cy="30" rx="18" ry="4.5" fill="rgba(168,48,32,0.72)"/>
+          <ellipse cx="50" cy="30" rx="10" ry="2.5" fill="rgba(200,70,50,0.5)"/>
+          <path d="M36,30 L28,58 L72,58 L64,30 Z" fill="url(#gNeck)"/>
+          <path d="M39,33 L31,56" stroke="rgba(255,255,255,0.16)" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M28,58 Q14,76 14,98 L14,158 Q14,186 50,186 Q86,186 86,158 L86,98 Q86,76 72,58 Z" fill="url(#gGlass)" stroke="rgba(142,201,187,0.28)" stroke-width="1.3"/>
+          <g clip-path="url(#bodyClip)">
+            <g class="scene-water-level">
+              <rect x="14" y="120" width="72" height="72" fill="url(#gWater)"/>
+              <path d="M14,120 C26,116 37,124 50,120 C63,116 74,122 86,120" fill="none" stroke="rgba(142,201,187,0.45)" stroke-width="1.8"/>
+            </g>
+          </g>
+          <g transform="rotate(-6, 50, 112)">
+            <rect x="30" y="70" width="34" height="48" rx="4" fill="url(#gPaper)" stroke="rgba(175,145,70,0.35)" stroke-width="0.9"/>
+            <line x1="35" y1="82" x2="60" y2="82" stroke="rgba(50,30,5,0.22)" stroke-width="1.1"/>
+            <line x1="35" y1="90" x2="60" y2="90" stroke="rgba(50,30,5,0.22)" stroke-width="1.1"/>
+            <line x1="35" y1="98" x2="57" y2="98" stroke="rgba(50,30,5,0.22)" stroke-width="1.1"/>
+            <line x1="35" y1="106" x2="59" y2="106" stroke="rgba(50,30,5,0.22)" stroke-width="1.1"/>
+            <line x1="35" y1="114" x2="52" y2="114" stroke="rgba(50,30,5,0.16)" stroke-width="1.1"/>
+            <line x1="30" y1="88" x2="64" y2="88" stroke="rgba(155,120,50,0.12)" stroke-width="0.6"/>
+          </g>
+          <path d="M22,80 Q19,110 20,148" stroke="rgba(255,255,255,0.19)" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <path d="M27,66 Q25,78 26,92" stroke="rgba(255,255,255,0.1)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="50" cy="176" rx="24" ry="5.5" fill="rgba(61,143,173,0.18)"/>
+          <ellipse cx="50" cy="59" rx="22" ry="4.5" fill="rgba(61,143,173,0.22)" stroke="rgba(142,201,187,0.18)" stroke-width="0.9"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <header class="scene-nav" id="header-nav">
+    <a href="/" class="scene-nav-brand">BOTTLED</a>
+    <ul class="scene-nav-links" aria-label="Main">
+      <li><a href="/write.html">Throw a bottle</a></li>
+      <li><a href="/read.html">Find a bottle</a></li>
+      <li><a href="/about.html">About</a></li>
+    </ul>
+    <div class="scene-nav-controls">
+      <button type="button" class="scene-nav-btn" id="sound-toggle" aria-label="Turn on ocean sound" title="Turn on ocean sound">🔊</button>
+      <button type="button" class="scene-nav-btn" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+    </div>
   </header>
-  <main id="main" class="container">
-    <h1>Bottled</h1>
-    <p class="tagline"><em>Throw your words into the sea. Someone, somewhere, will find them.</em></p>
-    <p class="landing-quote" id="landing-quote" aria-live="polite"></p>
-    <p id="live-count" class="live-count" aria-live="polite">… bottles drifting in the sea right now.</p>
-    <p class="cta-buttons">
-      <a href="/write.html" class="btn btn-primary">Throw a bottle into the sea</a>
-      <a href="/read.html" class="btn btn-secondary">Find a bottle on the shore</a>
-    </p>
+
+  <main id="main" class="scene-content" role="main">
+    <h1 class="scene-logo">Bottled</h1>
+    <p class="tagline scene-tagline"><em>Throw your words into the sea. Someone, somewhere, will find them.</em></p>
+    <p class="landing-quote scene-tagline" id="landing-quote" aria-live="polite"></p>
+    <p id="live-count" class="live-count scene-counter" aria-live="polite">… bottles drifting in the sea right now.</p>
+    <div class="cta-buttons scene-buttons">
+      <a href="/write.html" class="btn btn-primary scene-btn scene-btn-primary">Throw a bottle into the sea</a>
+      <a href="/read.html" class="btn btn-secondary scene-btn scene-btn-secondary">Find a bottle on the shore</a>
+    </div>
   </main>
+
+  <footer class="scene-footer">We store no personal data — your session disappears after 24 hours.</footer>
+
   <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/theme.js"></script>
   <script src="/js/quotes.js"></script>
   <script src="/js/sound.js"></script>
   <script src="/js/count.js"></script>
+  <script src="/js/scene.js"></script>
   <script>
-    if (window.BottledAnimations) window.BottledAnimations.initOcean();
     var q = document.getElementById('landing-quote');
     if (q && window.BottledQuotes) q.textContent = window.BottledQuotes.random();
     (function () {
