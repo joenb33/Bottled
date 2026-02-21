@@ -98,32 +98,7 @@ npm install
 ### 3. Set up Supabase
 
 1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to the SQL editor and run the following:
-
-```sql
-CREATE TABLE messages (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  content TEXT NOT NULL CHECK (char_length(content) <= 1000),
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  received_count INTEGER DEFAULT 0,
-  is_flagged BOOLEAN DEFAULT FALSE
-);
-
--- Index for fast random selection
-CREATE INDEX idx_messages_created ON messages(created_at);
-
--- Enable Row Level Security
-ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
-
--- Allow anyone to read non-flagged messages
-CREATE POLICY "Read approved messages" ON messages
-  FOR SELECT USING (is_flagged = FALSE);
-
--- Allow inserts (controlled by backend only)
-CREATE POLICY "Insert via service role only" ON messages
-  FOR INSERT WITH CHECK (TRUE);
-```
-
+2. Go to the SQL editor and run the full schema from **[supabase/schema.sql](supabase/schema.sql)** (messages table, RLS, `get_random_message` RPC, rate-limiting table and `increment_send_count` RPC).
 3. Copy your **Project URL** and **service_role key** from Settings → API
 
 ### 4. Configure environment variables
