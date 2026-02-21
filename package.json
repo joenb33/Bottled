@@ -1,0 +1,13 @@
+{
+  "name": "bottled",
+  "version": "1.0.0",
+  "description": "Message in a Bottle — throw or find anonymous messages worldwide",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  }
+}
