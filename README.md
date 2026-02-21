@@ -119,6 +119,14 @@ OPENAI_API_KEY=your-openai-api-key
 
 ### 5. Run locally
 
+If you haven’t already, log in to Vercel once (needed for `vercel dev`):
+
+```bash
+vercel login
+```
+
+Then start the app:
+
 ```bash
 npm run dev
 ```
