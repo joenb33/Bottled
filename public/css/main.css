@@ -168,6 +168,12 @@ nav {
   font-size: 0.875rem;
   margin-top: var(--space-sm);
 }
+.success-meta {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
 
 /* Skip link (a11y) */
 .skip-link {
@@ -248,6 +254,11 @@ textarea:focus-visible {
   opacity: 0.7;
 }
 
+.text-muted {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
 /* Textarea polish */
 textarea {
   width: 100%;
@@ -287,7 +298,7 @@ textarea::placeholder {
   }
 }
 
-/* Dark mode class (toggle) */
+/* Dark mode class (manual toggle) */
 body.theme-dark {
   --color-ocean: #7eb8da;
   --color-sea-glass: #9ecce0;
@@ -298,6 +309,8 @@ body.theme-dark {
   --color-text-muted: #8fa3b5;
   --color-error: #e88a8a;
   --color-success: #7eb89e;
+  background-color: var(--color-sand);
+  color: var(--color-text);
 }
 body.theme-dark .message-card {
   background: var(--color-sand-dark);

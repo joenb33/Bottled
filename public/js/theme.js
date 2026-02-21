@@ -4,10 +4,12 @@
   var DARK = 'dark';
 
   function apply(isDark) {
-    document.body.classList.toggle('theme-dark', isDark);
+    document.body.classList.toggle('theme-dark', !!isDark);
+    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
     var btn = document.getElementById('theme-toggle');
     if (btn) {
       btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       btn.textContent = isDark ? '☀' : '☾';
     }
   }
@@ -18,11 +20,14 @@
     var isDark = stored === DARK || (stored !== 'light' && prefersDark);
     apply(isDark);
 
-    document.getElementById('theme-toggle')?.addEventListener('click', function () {
-      var isDark = document.body.classList.toggle('theme-dark');
-      localStorage.setItem(KEY, isDark ? DARK : 'light');
-      apply(isDark);
-    });
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var nowDark = !document.body.classList.contains('theme-dark');
+        localStorage.setItem(KEY, nowDark ? DARK : 'light');
+        apply(nowDark);
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -7,7 +7,6 @@
   var submitBtn = document.getElementById('submit-btn');
   var formFeedback = document.getElementById('form-feedback');
   var successBox = document.getElementById('success-box');
-  var statusLink = document.getElementById('status-link');
 
   function updateCount() {
     charCount.textContent = (message.value || '').length;
@@ -32,10 +31,6 @@
       if (result.success) {
         successBox.hidden = false;
         form.hidden = true;
-        if (result.id) {
-          if (statusLink) statusLink.href = '/status.html?id=' + encodeURIComponent(result.id);
-          document.cookie = 'bottled_sent_id=' + encodeURIComponent(result.id) + '; path=/; max-age=' + (24 * 60 * 60) + '; SameSite=Lax';
-        }
       } else {
         formFeedback.textContent = result.error || 'Something went wrong.';
         formFeedback.className = 'error-message';
