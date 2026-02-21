@@ -49,9 +49,27 @@
     return data;
   }
 
+  /**
+   * Report a message. Returns { success }.
+   * @param {string} id
+   * @returns {Promise<{ success: boolean }>}
+   */
+  async function reportMessage(id) {
+    const res = await fetch('/api/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id }),
+    });
+    const data = await res.json().catch(function () {
+      return { success: false };
+    });
+    return data;
+  }
+
   window.BottledAPI = {
     sendMessage: sendMessage,
     receiveMessage: receiveMessage,
     getStatus: getStatus,
+    reportMessage: reportMessage,
   };
 })();

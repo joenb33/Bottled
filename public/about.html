@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Bottled</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" href="/css/typography.css" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/animations.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
   <div class="ocean-container" aria-hidden="true"></div>
   <header>
     <nav class="container">
@@ -16,9 +18,10 @@
       <a href="/write.html">Throw a bottle</a>
       <a href="/read.html">Find a bottle</a>
       <a href="/about.html">About</a>
+      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
     </nav>
   </header>
-  <main class="container">
+  <main id="main" class="container">
     <h1>About Bottled</h1>
     <p>Bottled is a free, anonymous place to throw a message into the digital sea — or find one. No account, no email, no name.</p>
     <h2>How it works</h2>
@@ -31,6 +34,7 @@
   </main>
   <script src="/js/animations.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/theme.js"></script>
   <script>
     if (window.BottledAnimations) window.BottledAnimations.initOcean();
   </script>
