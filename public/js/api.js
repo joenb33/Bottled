@@ -1,11 +1,34 @@
 (function () {
   'use strict';
 
+  var SEEN_KEY = 'bottled-seen-ids';
+  var MAX_SEEN = 200;
+
+  function getSeenIds() {
+    try {
+      var raw = localStorage.getItem(SEEN_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function addSeenId(id) {
+    if (!id) return;
+    try {
+      var seen = getSeenIds();
+      if (seen.indexOf(id) === -1) {
+        seen.push(id);
+        if (seen.length > MAX_SEEN) {
+          seen = seen.slice(seen.length - MAX_SEEN);
+        }
+        localStorage.setItem(SEEN_KEY, JSON.stringify(seen));
+      }
+    } catch (e) {}
+  }
+
   /**
    * Send a message. Returns { success, id } or { success: false, error }.
-   * @param {string} text
-   * @param {{ mood?: string, seal_days?: number, one_time?: boolean }} opts
-   * @returns {Promise<{ success: boolean, id?: string, error?: string }>}
    */
   async function sendMessage(text, opts) {
     opts = opts || {};
@@ -29,24 +52,29 @@
   }
 
   /**
-   * Receive a random message. Returns { text, date, id } or { text: null, date: null }.
-   * @returns {Promise<{ text: string | null, date: string | null, id?: string }>}
+   * Receive a random message, excluding previously seen IDs.
    */
   async function receiveMessage() {
-    const res = await fetch('/api/receive');
+    var seen = getSeenIds();
+    const res = await fetch('/api/receive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ exclude: seen }),
+    });
     const data = await res.json().catch(function () {
       return { text: null, date: null };
     });
     if (!res.ok) {
       return { text: null, date: null };
     }
+    if (data.id) {
+      addSeenId(data.id);
+    }
     return data;
   }
 
   /**
-   * Get status for a message id. Returns { found: boolean, count?: number }.
-   * @param {string} id
-   * @returns {Promise<{ found: boolean, count?: number }>}
+   * Get status for a message id.
    */
   async function getStatus(id) {
     const res = await fetch('/api/status/' + encodeURIComponent(id));
@@ -57,9 +85,7 @@
   }
 
   /**
-   * Report a message. Returns { success }.
-   * @param {string} id
-   * @returns {Promise<{ success: boolean }>}
+   * Report a message.
    */
   async function reportMessage(id) {
     const res = await fetch('/api/report', {

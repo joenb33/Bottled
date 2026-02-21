@@ -4,33 +4,130 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin — Bottled</title>
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" href="/css/typography.css" />
   <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
   <header>
     <nav class="container">
       <a href="/">Bottled</a>
-      <a href="/admin.html">Admin</a>
+      <a href="/admin.html" aria-current="page">Admin</a>
+      <span class="nav-spacer"></span>
+      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
     </nav>
   </header>
+
   <main id="main" class="container">
-    <h1>Admin — Flagged messages</h1>
+    <!-- Login Gate -->
     <div id="admin-login" class="admin-login">
-      <p class="text-muted">Enter the admin secret to view and manage reported messages.</p>
-      <input type="password" id="admin-key" class="admin-key-input" placeholder="Admin secret" autocomplete="off" />
-      <button type="button" class="btn btn-primary" id="admin-login-btn">Continue</button>
-      <p id="admin-login-error" class="error-message" hidden></p>
+      <div class="login-card">
+        <div class="login-icon" aria-hidden="true">🔐</div>
+        <h1>Admin Panel</h1>
+        <p class="text-muted">Enter the admin secret to access the dashboard.</p>
+        <input type="password" id="admin-key" class="admin-key-input" placeholder="Admin secret" autocomplete="off" />
+        <button type="button" class="btn btn-primary" id="admin-login-btn">Sign in</button>
+        <p id="admin-login-error" class="error-message" hidden></p>
+      </div>
     </div>
+
+    <!-- Dashboard -->
     <div id="admin-panel" hidden>
-      <p><button type="button" class="btn btn-secondary" id="admin-logout-btn">Log out</button> <button type="button" class="btn btn-secondary" id="admin-refresh-btn">Refresh list</button></p>
-      <p id="admin-count" class="text-muted"></p>
-      <div id="admin-list" class="admin-list"></div>
-      <p id="admin-empty" class="text-muted" hidden>No flagged messages.</p>
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <div class="admin-header-actions">
+          <button type="button" class="btn btn-secondary btn-sm" id="admin-refresh-btn">Refresh</button>
+          <button type="button" class="btn btn-secondary btn-sm btn-danger-outline" id="admin-logout-btn">Log out</button>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <section class="stats-grid" id="stats-grid" aria-label="Statistics">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-label">Total bottles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-today">—</div>
+          <div class="stat-label">Thrown today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-week">—</div>
+          <div class="stat-label">This week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-reads">—</div>
+          <div class="stat-label">Total reads</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-unread">—</div>
+          <div class="stat-label">Never found</div>
+        </div>
+        <div class="stat-card stat-card-accent">
+          <div class="stat-value" id="stat-flagged">—</div>
+          <div class="stat-label">Flagged</div>
+        </div>
+      </section>
+
+      <!-- Mood Breakdown -->
+      <section class="admin-section" id="mood-section" aria-label="Mood breakdown">
+        <h2>Mood breakdown</h2>
+        <div class="mood-chart" id="mood-chart"></div>
+        <p class="text-muted" id="mood-extras"></p>
+      </section>
+
+      <!-- Top Read -->
+      <section class="admin-section" id="top-read-section" aria-label="Most read messages">
+        <h2>Most read bottles</h2>
+        <div class="admin-list" id="top-read-list"></div>
+        <p id="top-read-empty" class="text-muted" hidden>No data yet.</p>
+      </section>
+
+      <!-- Tabs: Flagged / All Messages -->
+      <section class="admin-section" aria-label="Message management">
+        <div class="admin-tabs">
+          <button type="button" class="admin-tab active" data-tab="flagged">Flagged</button>
+          <button type="button" class="admin-tab" data-tab="all">All messages</button>
+        </div>
+
+        <!-- Flagged Messages -->
+        <div id="tab-flagged" class="admin-tab-panel">
+          <p id="admin-count" class="text-muted"></p>
+          <div id="admin-list" class="admin-list"></div>
+          <p id="admin-empty" class="text-muted" hidden>No flagged messages. All clear.</p>
+        </div>
+
+        <!-- All Messages Browser -->
+        <div id="tab-all" class="admin-tab-panel" hidden>
+          <div class="admin-toolbar">
+            <div class="admin-search">
+              <input type="text" id="msg-search" placeholder="Search messages..." class="admin-search-input" />
+            </div>
+            <select id="msg-filter" class="admin-filter-select">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="flagged">Flagged</option>
+              <option value="unread">Never found</option>
+              <option value="sealed">Sealed</option>
+            </select>
+          </div>
+          <div id="all-messages-list" class="admin-list"></div>
+          <div id="all-messages-pagination" class="admin-pagination"></div>
+          <p id="all-messages-empty" class="text-muted" hidden>No messages found.</p>
+        </div>
+      </section>
+
+      <!-- Recent Activity -->
+      <section class="admin-section" id="recent-section" aria-label="Recent activity">
+        <h2>Recent activity</h2>
+        <div class="admin-list" id="recent-list"></div>
+      </section>
     </div>
   </main>
+  <script src="/js/theme.js"></script>
   <script src="/js/admin.js"></script>
 </body>
 </html>

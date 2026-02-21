@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your bottle — Bottled</title>
+  <meta name="description" content="Check if someone found your bottle." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="stylesheet" href="/css/typography.css" />
   <link rel="stylesheet" href="/css/main.css" />
@@ -15,18 +16,26 @@
   <header>
     <nav class="container">
       <a href="/">Bottled</a>
-      <a href="/write.html">Throw a bottle</a>
-      <a href="/read.html">Find a bottle</a>
-      <a href="/about.html">About</a>
-      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
-      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+      <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+      <div class="nav-links-inner">
+        <a href="/write.html">Throw a bottle</a>
+        <a href="/read.html">Find a bottle</a>
+        <a href="/about.html">About</a>
+      </div>
+      <span class="nav-spacer"></span>
+      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">&#128266;</button>
+      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">&#9790;</button>
     </nav>
   </header>
   <main id="main" class="container">
     <h1>Your bottle</h1>
-    <p id="status-message">Checking…</p>
-    <p><a href="/" class="btn btn-primary">Back home</a> <a href="/write.html" class="btn btn-secondary">Throw another</a></p>
+    <p id="status-message">Checking...</p>
+    <p style="margin-top: var(--space-xl);">
+      <a href="/" class="btn btn-primary">Back home</a>
+      <a href="/write.html" class="btn btn-secondary">Throw another</a>
+    </p>
   </main>
+  <footer class="page-footer">We store no personal data. Your session disappears after 24 hours.</footer>
   <script src="/js/animations.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/main.js"></script>
@@ -35,7 +44,7 @@
   <script src="/js/status.js"></script>
   <script>
     if (window.BottledAnimations) window.BottledAnimations.initOcean();
-    (function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){var on=window.BottledSound.isEnabled();b.textContent=on?'🔇':'🔊';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');b.onclick=function(){on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'🔇':'🔊';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');};}})();
+    (function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){var on=window.BottledSound.isEnabled();b.textContent=on?'\uD83D\uDD07':'\uD83D\uDD0A';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');b.onclick=function(){on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'\uD83D\uDD07':'\uD83D\uDD0A';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');};}})();
   </script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };

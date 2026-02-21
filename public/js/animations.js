@@ -3,7 +3,7 @@
 
   function initOcean() {
     const container = document.querySelector('.ocean-container');
-    if (!container) return;
+    if (!container || container.childElementCount > 0) return;
     for (let i = 0; i < 3; i++) {
       const wave = document.createElement('div');
       wave.className = 'ocean-wave';
@@ -25,4 +25,8 @@
     initOcean: initOcean,
     revealBottle: revealBottle,
   };
+
+  if (document.querySelector('.ocean-container')) {
+    initOcean();
+  }
 })();

@@ -9,17 +9,30 @@ module.exports = async (req, res) => {
   if (!requireAdmin(req, res)) return;
 
   if (req.method === 'GET') {
-    const { data, error } = await supabase
-      .from('messages')
-      .select('id, content, created_at, received_count, mood, sealed_until, one_time_use')
-      .eq('is_flagged', true)
-      .order('created_at', { ascending: false });
-    if (error) {
-      console.error('Admin flagged list error:', error);
+    const [flaggedRes, consumedRes] = await Promise.all([
+      supabase
+        .from('messages')
+        .select('id, content, created_at, received_count, mood, sealed_until, one_time_use')
+        .eq('is_flagged', true)
+        .or('one_time_use.eq.false,one_time_use.is.null')
+        .order('created_at', { ascending: false }),
+      supabase
+        .from('messages')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_flagged', true)
+        .eq('one_time_use', true),
+    ]);
+
+    if (flaggedRes.error) {
+      console.error('Admin flagged list error:', flaggedRes.error);
       res.status(500).json({ error: 'Failed to fetch' });
       return;
     }
-    res.status(200).json({ messages: data || [] });
+
+    res.status(200).json({
+      messages: flaggedRes.data || [],
+      consumedRareCount: consumedRes.count ?? 0,
+    });
     return;
   }
 
