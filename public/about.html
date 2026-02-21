@@ -42,5 +42,9 @@
     if (window.BottledAnimations) window.BottledAnimations.initOcean();
     (function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){b.textContent=window.BottledSound.isEnabled()?'🔇':'🔊';b.onclick=function(){var on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'🔇':'🔊';};}})();
   </script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
