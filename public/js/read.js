@@ -85,24 +85,59 @@
       if (!lastReceivedData || !lastReceivedData.text) return;
       var text = lastReceivedData.text;
       var dateStr = lastReceivedData.date ? new Date(lastReceivedData.date).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
-      var escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      var lines = escaped.split(/\n/);
-      var tspan = lines.map(function (line, i) {
-        return '<tspan x="24" dy="' + (i === 0 ? 0 : 1.2) + 'em">' + line + '</tspan>';
-      }).join('');
-      var height = Math.max(200, 90 + lines.length * 26);
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="' + height + '" viewBox="0 0 320 ' + height + '">' +
-        '<rect width="320" height="' + height + '" fill="#F5EDD6" stroke="#1A3A5C" stroke-width="1"/>' +
-        '<text x="24" y="36" font-family="Georgia, serif" font-size="14" fill="#1A3A5C" xml:space="preserve">' + tspan + '</text>' +
-        (dateStr ? '<text x="24" y="' + (height - 24) + '" font-family="sans-serif" font-size="11" fill="#5a7a94">' + dateStr + ' — Bottled</text>' : '<text x="24" y="' + (height - 24) + '" font-family="sans-serif" font-size="11" fill="#5a7a94">Bottled</text>') +
-        '</svg>';
-      var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
+      var lines = text.split(/\n/);
+      var lineHeight = 22;
+      var padding = 24;
+      var width = 320;
+      var maxWidth = width - padding * 2;
+      var scale = 2;
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      ctx.font = '14px Georgia, serif';
+      var drawnLines = [];
+      lines.forEach(function (line) {
+        if (!line.length) {
+          drawnLines.push('');
+          return;
+        }
+        var words = line.split(/\s+/);
+        var run = '';
+        for (var i = 0; i < words.length; i++) {
+          var test = run + (run ? ' ' : '') + words[i];
+          if (ctx.measureText(test).width > maxWidth && run) {
+            drawnLines.push(run);
+            run = words[i];
+          } else {
+            run = test;
+          }
+        }
+        if (run) drawnLines.push(run);
+      });
+      var bodyHeight = drawnLines.length * lineHeight;
+      var height = Math.max(200, 80 + bodyHeight + 40);
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      ctx.fillStyle = '#F5EDD6';
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = '#1A3A5C';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(0, 0, width, height);
+      ctx.fillStyle = '#1A3A5C';
+      ctx.font = '14px Georgia, serif';
+      var y = 36;
+      drawnLines.forEach(function (line) {
+        ctx.fillText(line || ' ', padding, y);
+        y += lineHeight;
+      });
+      ctx.fillStyle = '#5a7a94';
+      ctx.font = '11px sans-serif';
+      ctx.fillText(dateStr ? dateStr + ' — Bottled' : 'Bottled', padding, height - 20);
+      var dataUrl = canvas.toDataURL('image/png');
       var a = document.createElement('a');
-      a.href = url;
-      a.download = 'bottle.svg';
+      a.href = dataUrl;
+      a.download = 'bottle.png';
       a.click();
-      URL.revokeObjectURL(url);
     });
   }
 
