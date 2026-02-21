@@ -262,7 +262,9 @@ nav a[aria-current="page"] {
 /* Focus styles */
 a:focus-visible,
 button:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--color-sea-glass);
   outline-offset: 2px;
 }
@@ -333,26 +335,12 @@ textarea:focus-visible {
   font-size: 0.9375rem;
 }
 
-/* Admin */
-.admin-login .admin-key-input {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  margin: var(--space-md) 0;
-  padding: var(--space-sm) var(--space-md);
-  font-family: var(--font-ui);
-  font-size: 1rem;
-  border: 1px solid var(--color-sand-dark);
-  border-radius: var(--radius-sm);
-}
+/* Admin (base styles, extended by admin.css on admin page) */
 .admin-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   margin-top: var(--space-lg);
-}
-.admin-card {
-  margin: 0;
 }
 
 /* Write form: mood & options */
@@ -629,6 +617,17 @@ body.theme-dark .btn-theme:hover,
 body.theme-dark .btn-icon:hover {
   background: var(--color-ocean);
   color: #1a2836;
+}
+body.theme-dark .nav-toggle {
+  border-color: var(--color-ocean);
+  color: var(--color-ocean);
+}
+body.theme-dark .nav-toggle:hover {
+  background: var(--color-ocean);
+  color: #1a2836;
+}
+body.theme-dark .page-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Light mode: index layout when scene is hidden */

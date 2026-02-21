@@ -1,4 +1,7 @@
-/* Admin Dashboard Styles */
+/* Admin Dashboard — wider container (admin.css only loaded on admin page) */
+.container {
+  max-width: 800px;
+}
 
 .admin-login {
   display: flex;
