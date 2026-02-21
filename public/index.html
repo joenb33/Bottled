@@ -50,12 +50,16 @@
     (function () {
       var btn = document.getElementById('sound-toggle');
       if (!btn || !window.BottledSound) return;
-      btn.textContent = window.BottledSound.isEnabled() ? '🔇' : '🔊';
+      var on = window.BottledSound.isEnabled();
+      btn.textContent = on ? '🔇' : '🔊';
+      btn.setAttribute('aria-label', on ? 'Turn off ocean sound' : 'Turn on ocean sound');
+      btn.setAttribute('title', on ? 'Turn off ocean sound' : 'Turn on ocean sound');
       btn.addEventListener('click', function () {
-        var on = !window.BottledSound.isEnabled();
+        on = !window.BottledSound.isEnabled();
         window.BottledSound.setEnabled(on);
         btn.textContent = on ? '🔇' : '🔊';
         btn.setAttribute('aria-label', on ? 'Turn off ocean sound' : 'Turn on ocean sound');
+        btn.setAttribute('title', on ? 'Turn off ocean sound' : 'Turn on ocean sound');
       });
     })();
   </script>
