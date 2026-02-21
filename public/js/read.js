@@ -16,15 +16,21 @@
   var currentMessageId = null;
   var lastReceivedData = null;
 
+  if (!findBtn) return;
+
   function showMessage(data) {
     lastReceivedData = data;
     currentMessageId = data.id || null;
     messageText.textContent = data.text || '';
-    messageDate.textContent = data.date ? 'Found on ' + new Date(data.date).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
+    messageDate.textContent = data.date
+      ? 'Found on ' + new Date(data.date).toLocaleDateString(undefined, { dateStyle: 'medium' })
+      : '';
     if (messageSeal) {
       if (data.mood) {
         messageSeal.hidden = false;
-        messageSeal.innerHTML = '<span class="wax-seal seal-' + data.mood + '" aria-hidden="true"></span><span>' + (data.mood.charAt(0).toUpperCase() + data.mood.slice(1)) + '</span>';
+        messageSeal.innerHTML =
+          '<span class="wax-seal seal-' + data.mood + '" aria-hidden="true"></span>' +
+          '<span>' + (data.mood.charAt(0).toUpperCase() + data.mood.slice(1)) + '</span>';
       } else {
         messageSeal.hidden = true;
       }
@@ -42,7 +48,7 @@
 
   findBtn.addEventListener('click', function () {
     findBtn.disabled = true;
-    findBtn.textContent = 'Finding…';
+    findBtn.textContent = 'Searching the shore...';
     noMessages.hidden = true;
     openStep.hidden = true;
     messageBox.hidden = true;
@@ -75,7 +81,7 @@
     }).catch(function () {
       findBtn.disabled = false;
       findBtn.textContent = 'Find a bottle';
-      noMessages.textContent = 'Something went wrong. Try again.';
+      noMessages.textContent = 'Something went wrong. Please try again.';
       noMessages.hidden = false;
     });
   });
@@ -84,22 +90,25 @@
     keepBtn.addEventListener('click', function () {
       if (!lastReceivedData || !lastReceivedData.text) return;
       var text = lastReceivedData.text;
-      var dateStr = lastReceivedData.date ? new Date(lastReceivedData.date).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
+      var dateStr = lastReceivedData.date
+        ? new Date(lastReceivedData.date).toLocaleDateString(undefined, { dateStyle: 'medium' })
+        : '';
+      var moodStr = lastReceivedData.mood
+        ? lastReceivedData.mood.charAt(0).toUpperCase() + lastReceivedData.mood.slice(1)
+        : '';
       var lines = text.split(/\n/);
       var lineHeight = 22;
-      var padding = 24;
-      var width = 320;
+      var padding = 28;
+      var width = 340;
       var maxWidth = width - padding * 2;
       var scale = 2;
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       ctx.font = '14px Georgia, serif';
+
       var drawnLines = [];
       lines.forEach(function (line) {
-        if (!line.length) {
-          drawnLines.push('');
-          return;
-        }
+        if (!line.length) { drawnLines.push(''); return; }
         var words = line.split(/\s+/);
         var run = '';
         for (var i = 0; i < words.length; i++) {
@@ -113,26 +122,34 @@
         }
         if (run) drawnLines.push(run);
       });
+
       var bodyHeight = drawnLines.length * lineHeight;
-      var height = Math.max(200, 80 + bodyHeight + 40);
+      var height = Math.max(220, 90 + bodyHeight + 50);
       canvas.width = width * scale;
       canvas.height = height * scale;
       ctx.setTransform(scale, 0, 0, scale, 0, 0);
+
       ctx.fillStyle = '#F5EDD6';
       ctx.fillRect(0, 0, width, height);
+
       ctx.strokeStyle = '#1A3A5C';
-      ctx.lineWidth = 1;
-      ctx.strokeRect(0, 0, width, height);
+      ctx.lineWidth = 2;
+      ctx.strokeRect(1, 1, width - 2, height - 2);
+
       ctx.fillStyle = '#1A3A5C';
       ctx.font = '14px Georgia, serif';
-      var y = 36;
+      var y = 40;
       drawnLines.forEach(function (line) {
         ctx.fillText(line || ' ', padding, y);
         y += lineHeight;
       });
+
+      var footerY = height - 22;
       ctx.fillStyle = '#5a7a94';
-      ctx.font = '11px sans-serif';
-      ctx.fillText(dateStr ? dateStr + ' — Bottled' : 'Bottled', padding, height - 20);
+      ctx.font = '10px sans-serif';
+      var footerText = [dateStr, moodStr, 'Bottled'].filter(Boolean).join(' \u2014 ');
+      ctx.fillText(footerText, padding, footerY);
+
       var dataUrl = canvas.toDataURL('image/png');
       var a = document.createElement('a');
       a.href = dataUrl;
@@ -145,10 +162,12 @@
     reportBtn.addEventListener('click', function () {
       if (!currentMessageId || reportBtn.disabled) return;
       reportBtn.disabled = true;
-      reportBtn.textContent = 'Reporting…';
+      reportBtn.textContent = 'Reporting...';
       window.BottledAPI.reportMessage(currentMessageId).then(function (result) {
-        reportBtn.textContent = result.success ? 'Reported' : 'Failed';
-        if (result.success) reportBtn.hidden = true;
+        reportBtn.textContent = result.success ? 'Reported — thank you' : 'Failed';
+        if (result.success) {
+          setTimeout(function () { reportBtn.hidden = true; }, 2000);
+        }
       }).catch(function () {
         reportBtn.disabled = false;
         reportBtn.textContent = 'Report';

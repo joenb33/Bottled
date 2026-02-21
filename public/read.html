@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find a bottle — Bottled</title>
+  <meta name="description" content="Find a random anonymous message from someone in the world. No replies, no likes — just the sea." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Find a bottle — Bottled" />
+  <meta property="og:description" content="Find a random anonymous message from someone in the world." />
   <link rel="stylesheet" href="/css/typography.css" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/animations.css" />
@@ -15,11 +19,15 @@
   <header>
     <nav class="container">
       <a href="/">Bottled</a>
-      <a href="/write.html">Throw a bottle</a>
-      <a href="/read.html">Find a bottle</a>
-      <a href="/about.html">About</a>
-      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">🔊</button>
-      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+      <button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+      <div class="nav-links-inner">
+        <a href="/write.html">Throw a bottle</a>
+        <a href="/read.html">Find a bottle</a>
+        <a href="/about.html">About</a>
+      </div>
+      <span class="nav-spacer"></span>
+      <button type="button" class="btn-icon" id="sound-toggle" aria-label="Toggle ocean sound" title="Ocean sound">&#128266;</button>
+      <button type="button" class="btn-theme" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">&#9790;</button>
     </nav>
   </header>
   <main id="main" class="container">
@@ -29,7 +37,7 @@
       <button type="button" class="btn btn-primary" id="find-btn">Find a bottle</button>
     </div>
     <div id="open-step" class="open-bottle-step" hidden>
-      <p>You found a bottle. Open it?</p>
+      <p>You found a bottle washed ashore. Open it?</p>
       <button type="button" class="btn btn-primary" id="open-btn">Open the bottle</button>
     </div>
     <div id="message-box" class="bottle-reveal message-card" hidden>
@@ -38,13 +46,14 @@
       <p id="message-date" class="message-meta"></p>
       <p class="message-quote" id="message-quote"></p>
       <p class="message-actions">
-        <button type="button" class="btn-link" id="keep-btn">Keep this bottle</button>
+        <button type="button" class="btn-link" id="keep-btn" title="Download as image">Keep this bottle</button>
         <button type="button" class="btn-link btn-report" id="report-btn" hidden>Report</button>
         <a href="/read.html" class="btn btn-secondary">Find another</a>
       </p>
     </div>
     <p id="no-messages" hidden>The tide hasn't brought any bottles yet. Try again later.</p>
   </main>
+  <footer class="page-footer">We store no personal data. Your session disappears after 24 hours.</footer>
   <script src="/js/animations.js"></script>
   <script src="/js/api.js"></script>
   <script src="/js/main.js"></script>
@@ -52,7 +61,7 @@
   <script src="/js/quotes.js"></script>
   <script src="/js/sound.js"></script>
   <script src="/js/read.js"></script>
-  <script>(function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){var on=window.BottledSound.isEnabled();b.textContent=on?'🔇':'🔊';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');b.onclick=function(){on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'🔇':'🔊';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');};}})();</script>
+  <script>(function(){var b=document.getElementById('sound-toggle');if(b&&window.BottledSound){var on=window.BottledSound.isEnabled();b.textContent=on?'\uD83D\uDD07':'\uD83D\uDD0A';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');b.onclick=function(){on=!window.BottledSound.isEnabled();window.BottledSound.setEnabled(on);b.textContent=on?'\uD83D\uDD07':'\uD83D\uDD0A';b.setAttribute('aria-label',on?'Turn off ocean sound':'Turn on ocean sound');b.setAttribute('title',on?'Turn off ocean sound':'Turn on ocean sound');};}})();</script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>

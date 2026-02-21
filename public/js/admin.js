@@ -255,7 +255,11 @@
       .then(function (data) {
         if (!data) return;
         var messages = data.messages || [];
-        if (countEl) countEl.textContent = messages.length + ' flagged message' + (messages.length === 1 ? '' : 's') + '.';
+        var countText = messages.length + ' flagged message' + (messages.length === 1 ? '' : 's') + '.';
+        if (data.consumedRareCount > 0) {
+          countText += ' (' + data.consumedRareCount + ' consumed rare bottle' + (data.consumedRareCount === 1 ? '' : 's') + ' hidden)';
+        }
+        if (countEl) countEl.textContent = countText;
         if (messages.length === 0) {
           if (emptyEl) emptyEl.hidden = false;
           return;
