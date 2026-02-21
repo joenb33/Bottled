@@ -1,5 +1,6 @@
 const { supabase } = require('../lib/supabase');
 const { moderate } = require('../lib/moderation');
+const { getClientIp, checkAndRecordSend } = require('../lib/rate-limit');
 
 const MAX_LENGTH = 1000;
 
@@ -15,6 +16,13 @@ module.exports = async (req, res) => {
   }
 
   try {
+    const ip = getClientIp(req);
+    const { allowed: rateOk } = await checkAndRecordSend(ip);
+    if (!rateOk) {
+      res.status(429).json({ success: false, error: 'Too many messages. Try again in an hour.' });
+      return;
+    }
+
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {};
     const text = typeof body.text === 'string' ? body.text.trim() : '';
 
