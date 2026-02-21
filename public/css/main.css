@@ -427,6 +427,23 @@ textarea::placeholder {
     border-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   }
+  textarea,
+  input[type="text"],
+  input[type="number"],
+  input[type="password"] {
+    background: var(--color-sand-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+  }
+  .mood-chip {
+    background: var(--color-sand-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .mood-chip.selected {
+    background: var(--color-ocean);
+    border-color: var(--color-ocean);
+    color: #1a2836;
+  }
 }
 
 /* Dark mode class (manual toggle) */
@@ -447,6 +464,51 @@ body.theme-dark .message-card {
   background: var(--color-sand-dark);
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+body.theme-dark textarea,
+body.theme-dark input[type="text"],
+body.theme-dark input[type="number"],
+body.theme-dark input[type="password"] {
+  background: var(--color-sand-dark);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+}
+body.theme-dark textarea:focus,
+body.theme-dark input[type="text"]:focus,
+body.theme-dark input[type="number"]:focus,
+body.theme-dark input[type="password"]:focus {
+  border-color: var(--color-sea-glass);
+}
+body.theme-dark .mood-chip {
+  background: var(--color-sand-dark);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+}
+body.theme-dark .mood-chip:hover {
+  border-color: var(--color-sea-glass);
+}
+body.theme-dark .mood-chip.selected {
+  background: var(--color-ocean);
+  border-color: var(--color-ocean);
+  color: #1a2836;
+}
+body.theme-dark .btn-secondary {
+  border-color: var(--color-ocean);
+  color: var(--color-ocean);
+}
+body.theme-dark .btn-secondary:hover {
+  background: var(--color-ocean);
+  color: #1a2836;
+}
+body.theme-dark .btn-theme,
+body.theme-dark .btn-icon {
+  border-color: var(--color-ocean);
+  color: var(--color-ocean);
+}
+body.theme-dark .btn-theme:hover,
+body.theme-dark .btn-icon:hover {
+  background: var(--color-ocean);
+  color: #1a2836;
 }
 
 /* Light mode: index layout when scene is hidden */

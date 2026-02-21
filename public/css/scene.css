@@ -124,10 +124,10 @@ body.scene-night {
   height: 100%;
 }
 
-.scene-night .scene-wave.w1 { bottom: 36%; animation: scene-wdrift 24s linear infinite; opacity: 0.35; }
-.scene-night .scene-wave.w2 { bottom: 26%; animation: scene-wdrift 17s linear infinite reverse; opacity: 0.55; }
-.scene-night .scene-wave.w3 { bottom: 13%; animation: scene-wdrift 30s linear infinite; opacity: 0.28; }
-.scene-night .scene-wave.w4 { bottom: 0; animation: scene-wdrift 13s linear infinite reverse; opacity: 0.88; }
+.scene-night .scene-wave.scene-w1 { bottom: 36%; animation: scene-wdrift 24s linear infinite; opacity: 0.35; }
+.scene-night .scene-wave.scene-w2 { bottom: 26%; animation: scene-wdrift 17s linear infinite reverse; opacity: 0.55; }
+.scene-night .scene-wave.scene-w3 { bottom: 13%; animation: scene-wdrift 30s linear infinite; opacity: 0.28; }
+.scene-night .scene-wave.scene-w4 { bottom: 0; animation: scene-wdrift 13s linear infinite reverse; opacity: 0.88; }
 
 @keyframes scene-wdrift {
   from { transform: translateX(0); }
