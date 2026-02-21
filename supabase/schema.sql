@@ -22,3 +22,15 @@ CREATE POLICY "Read approved messages" ON messages
 -- Inserts/updates only via backend (service role bypasses RLS)
 CREATE POLICY "Insert via service role only" ON messages
   FOR INSERT WITH CHECK (TRUE);
+
+-- RPC for fetching one random non-flagged message (used by GET /api/receive)
+CREATE OR REPLACE FUNCTION get_random_message()
+RETURNS SETOF messages
+LANGUAGE sql
+SECURITY DEFINER
+AS $$
+  SELECT * FROM messages
+  WHERE is_flagged = FALSE
+  ORDER BY random()
+  LIMIT 1;
+$$;
